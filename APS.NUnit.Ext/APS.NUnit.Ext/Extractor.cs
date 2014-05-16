@@ -22,6 +22,7 @@ namespace APS.NUnit.Ext
         /// the project should be truncated from the file name.  This may cause 
         /// files to be overwritten if <c>KeepFolderStructure</c> is also set.
         /// </param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Extractor(bool deleteOnDispose = true, bool keepFolderStructure = true, bool truncNamespace = true)
         {
             DeleteOnDispose = deleteOnDispose;

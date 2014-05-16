@@ -18,6 +18,7 @@ namespace APS.NUnit.Ext
         /// <summary>
         /// Makes it so this has to be declared inside this assembly.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         internal Extracted(bool deleteOnDispose)
         {
             DeleteOnDispose = deleteOnDispose;
@@ -85,6 +86,16 @@ namespace APS.NUnit.Ext
         /// DeleteOnDispose.
         /// </summary>
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Conditionally deletes the extracted file based on the value of 
+        /// DeleteOnDispose.
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
         {
             if (DeleteOnDispose && File.Exists)
             {
