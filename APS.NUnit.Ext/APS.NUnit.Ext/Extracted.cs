@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +13,21 @@ namespace APS.NUnit.Ext
     /// Stores information about the result of the extraction of an embedded 
     /// resource from an <c>Assembly</c>.
     /// </summary>
-    public class Extracted
+    public class Extracted : IDisposable
     {
         /// <summary>
         /// Makes it so this has to be declared inside this assembly.
         /// </summary>
-        internal Extracted()
+        internal Extracted(bool deleteOnDispose)
         {
-
+            DeleteOnDispose = deleteOnDispose;
         }
+        
+        /// <summary>
+        /// Indicates whether the file should be deleted when the Dispose 
+        /// method is called or not.
+        /// </summary>
+        public virtual bool DeleteOnDispose { get; set; }
 
         /// <summary>
         /// Indicates the <c>FileInfo</c> of the extracted file.
@@ -71,6 +78,30 @@ namespace APS.NUnit.Ext
                 result = base.Equals(obj);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Conditionally deletes the extracted file based on the value of 
+        /// DeleteOnDispose.
+        /// </summary>
+        public void Dispose()
+        {
+            if (DeleteOnDispose && File.Exists)
+            {
+                try
+                {
+                    File.Delete();
+                }
+                catch (IOException)
+                {
+                }
+                catch (SecurityException)
+                {
+                }
+                catch (UnauthorizedAccessException)
+                {
+                }
+            }
         }
     }
 }

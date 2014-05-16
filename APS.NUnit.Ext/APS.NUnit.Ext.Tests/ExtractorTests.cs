@@ -23,10 +23,10 @@ namespace APS.NUnit.Ext.Tests
 
             var targets = new List<Extractor>()
             {
-                new Extractor(false, false),
-                new Extractor(false, true),
-                new Extractor(true, false),
-                new Extractor(true, true)
+                new Extractor(true, false, false),
+                new Extractor(true, false, true),
+                new Extractor(true, true, false),
+                new Extractor(true, true, true)
             };
 
             var ignoreFolderStructure = ".";
@@ -60,6 +60,11 @@ namespace APS.NUnit.Ext.Tests
                     failed.Add(new KeyValuePair<string, string>(expected.FullName, result.File.FullName));
                     passed = false;
                 }
+
+                Assert.IsTrue(result.File.Exists);
+                result.Dispose();
+                result.File.Refresh();
+                Assert.IsFalse(result.File.Exists);
             }
 
             Assert.IsTrue(passed);
@@ -76,6 +81,11 @@ namespace APS.NUnit.Ext.Tests
             Assert.AreEqual(expected.FullName, result.File.FullName);
             Assert.IsNotNull(result.Namespace);
             Assert.IsNotNull(result.Assembly);
+
+            Assert.IsTrue(result.File.Exists);
+            result.Dispose();
+            result.File.Refresh();
+            Assert.IsFalse(result.File.Exists);
         }
 
         [Test]
@@ -89,6 +99,11 @@ namespace APS.NUnit.Ext.Tests
             Assert.AreEqual(expected.FullName, result.File.FullName);
             Assert.IsNotNull(result.Namespace);
             Assert.IsNotNull(result.Assembly);
+
+            Assert.IsTrue(result.File.Exists);
+            result.Dispose();
+            result.File.Refresh();
+            Assert.IsFalse(result.File.Exists);
         }
 
 
@@ -105,6 +120,11 @@ namespace APS.NUnit.Ext.Tests
             Assert.AreEqual(expected.FullName, result.File.FullName);
             Assert.IsNotNull(result.Namespace);
             Assert.IsNotNull(result.Assembly);
+
+            Assert.IsTrue(result.File.Exists);
+            result.Dispose();
+            result.File.Refresh();
+            Assert.IsFalse(result.File.Exists);
         }
 
         [Test]
@@ -129,6 +149,14 @@ namespace APS.NUnit.Ext.Tests
 
             var distinctExtracted = result.Distinct();
             Assert.AreEqual(distinctExtracted.Count(), result.Count);
+
+            foreach (var res in result)
+            {
+                Assert.IsTrue(res.File.Exists);
+                res.Dispose();
+                res.File.Refresh();
+                Assert.IsFalse(res.File.Exists);
+            }
         }
 
         [Test]
@@ -153,6 +181,14 @@ namespace APS.NUnit.Ext.Tests
 
             var distinctExtracted = result.Distinct();
             Assert.AreEqual(distinctExtracted.Count(), result.Count);
+
+            foreach (var res in result)
+            {
+                Assert.IsTrue(res.File.Exists);
+                res.Dispose();
+                res.File.Refresh();
+                Assert.IsFalse(res.File.Exists);
+            }
         }
 
         [Test]
@@ -177,6 +213,14 @@ namespace APS.NUnit.Ext.Tests
 
             var distinctExtracted = result.Distinct();
             Assert.AreEqual(distinctExtracted.Count(), result.Count);
+
+            foreach (var res in result)
+            {
+                Assert.IsTrue(res.File.Exists);
+                res.Dispose();
+                res.File.Refresh();
+                Assert.IsFalse(res.File.Exists);
+            }
         }
 
         [Test]
@@ -209,6 +253,14 @@ namespace APS.NUnit.Ext.Tests
 
             var distinctExtracted = result.Distinct();
             Assert.AreEqual(distinctExtracted.Count(), result.Count);
+
+            foreach (var res in result)
+            {
+                Assert.IsTrue(res.File.Exists);
+                res.Dispose();
+                res.File.Refresh();
+                Assert.IsFalse(res.File.Exists);
+            }
         }
 
         [Test]
@@ -241,6 +293,14 @@ namespace APS.NUnit.Ext.Tests
 
             var distinctExtracted = result.Distinct();
             Assert.AreEqual(distinctExtracted.Count(), result.Count);
+
+            foreach (var res in result)
+            {
+                Assert.IsTrue(res.File.Exists);
+                res.Dispose();
+                res.File.Refresh();
+                Assert.IsFalse(res.File.Exists);
+            }
         }
 
         [Test]

@@ -22,11 +22,18 @@ namespace APS.NUnit.Ext
         /// the project should be truncated from the file name.  This may cause 
         /// files to be overwritten if <c>KeepFolderStructure</c> is also set.
         /// </param>
-        public Extractor(bool keepFolderStructure = true, bool truncNamespace = true)
+        public Extractor(bool deleteOnDispose = true, bool keepFolderStructure = true, bool truncNamespace = true)
         {
+            DeleteOnDispose = deleteOnDispose;
             KeepFolderStructure = keepFolderStructure;
             TruncNamespace = truncNamespace;
         }
+
+        /// <summary>
+        /// Whether or not <c>Extracted</c> files should be deleted when their
+        /// <c>Dispose()</c> method is called.
+        /// </summary>
+        public virtual bool DeleteOnDispose { get; set; }
 
         /// <summary>
         /// Whether or not the relative path in the project should be kept, or 
@@ -81,7 +88,7 @@ namespace APS.NUnit.Ext
                 using(var writer = new StreamWriter(file))
                 {
                     writer.Write(reader.ReadToEnd());
-                    result = new Extracted()
+                    result = new Extracted(DeleteOnDispose)
                     {
                         File = new FileInfo(file),
                         Namespace = type.Namespace,
@@ -148,7 +155,7 @@ namespace APS.NUnit.Ext
                 using (var writer = new StreamWriter(file))
                 {
                     writer.Write(reader.ReadToEnd());
-                    result = new Extracted()
+                    result = new Extracted(DeleteOnDispose)
                     {
                         File = new FileInfo(file),
                         Namespace = ns,
@@ -197,7 +204,7 @@ namespace APS.NUnit.Ext
                     {
                         var baseNs = Extractor.BaseNs(assembly);
                         var splitBaseNs = baseNs.Split('.');
-                        for (int i = splitBaseNs.Length; i < splitResourceName.Length; i++)
+                        for (int i = splitBaseNs.Length; i < splitResourceName.Length - 2; i++)
                         {
                             relativePath += splitResourceName[i];
                             if(i != splitResourceName.Length - 1)
@@ -214,7 +221,7 @@ namespace APS.NUnit.Ext
                         using (var writer = new StreamWriter(file))
                         {
                             writer.Write(reader.ReadToEnd());
-                            results.Add(new Extracted()
+                            results.Add(new Extracted(DeleteOnDispose)
                             {
                                 File = new FileInfo(file),
                                 Namespace = ns,
@@ -322,7 +329,7 @@ namespace APS.NUnit.Ext
                             using(var writer = new StreamWriter(filename))
                             {
                                 writer.Write(reader.ReadToEnd());
-                                results.Add(new Extracted()
+                                results.Add(new Extracted(DeleteOnDispose)
                                         {
                                             File = new FileInfo(file),
                                             Namespace = ns.Key,
