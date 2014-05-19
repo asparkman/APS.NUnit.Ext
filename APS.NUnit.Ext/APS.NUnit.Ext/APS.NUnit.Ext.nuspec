@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>APS.NUnit.Ext</id>
+    <version>1.0.0</version>
+    <title>APS NUnit Extensions</title>
+    <authors>Alex Sparkman</authors>
+    <owners>Alex Sparkman</owners>
+    <projectUrl>https://github.com/asparkman/APS.NUnit.Ext</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Make testing faster by implementing a factory to control whether a 
+      remote server is contacted run against a remote server.  Make testing 
+      migratable by using embedded resources instead of absolute paths.
+    </description>
+    <summary>
+      This package is intended to help with unit testing.  It provides a method 
+      for keeping absolute paths out of code files by allowing embedded 
+      resources to be extracted to the working directory of the running 
+      instance.  It also provides a base implementation for running tests 
+      against a remote server, or a locally mocked object.
+    </summary>
+    <releaseNotes>See project url for release notes.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>APS.NUnit.Ext Embedded Resources Dependency Injection BaseProvider Extractor Extracted</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\APS.NUnit.Ext.dll" target="lib\net45" />
+    <file src="Content\App.config.transform" target="content" />
+  </files>
+</package>
