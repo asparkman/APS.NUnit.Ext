@@ -43,7 +43,6 @@
     <Compile Include="BaseProvider.cs" />
     <Compile Include="Extracted.cs" />
     <Compile Include="Extractor.cs" />
-    <Compile Include="ExtractorStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,11 @@ namespace APS.NUnit.Ext
     /// </summary>
     public abstract class BaseProvider<TInterface>
     {
+        /// <summary>
+        /// The AppSettings value of TestWithConnections.
+        /// </summary>
         private static readonly string TEST_WITH_CONNECTIONS = ConfigurationManager.AppSettings["TestWithConnections"];
+        
         /// <summary>
         /// Returns the TestWithConnections app setting value.
         /// </summary>
