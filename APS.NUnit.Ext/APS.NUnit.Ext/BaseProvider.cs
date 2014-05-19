@@ -20,6 +20,8 @@ namespace APS.NUnit.Ext
         
         /// <summary>
         /// Returns the TestWithConnections app setting value.
+        /// 
+        /// It will return false if it is not set.
         /// </summary>
         public static bool TestWithConnections
         {
