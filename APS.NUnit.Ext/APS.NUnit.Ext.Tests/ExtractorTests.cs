@@ -17,6 +17,13 @@ namespace APS.NUnit.Ext.Tests
     public class ExtractorTests
     {
         [Test]
+        public void GetExtName()
+        {
+            var assembly = Assembly.GetAssembly(typeof(Extracted));
+            Console.WriteLine(assembly.GetName());
+        }
+
+        [Test]
         public void Ctor_All()
         {
             var type = this.GetType();

@@ -20,13 +20,24 @@ namespace APS.NUnit.Ext.Example.Data
     {
         public StubLocalDatabaseEntities1()
         {
-            Addresses = new StubDbSet<Address>();
-            People = new StubDbSet<Person>();
-            Views = new StubDbSet<View>();
+            Addresses = new FakeDbSet<Address>();
+            People = new FakeDbSet<Person>();
+            Views = new FakeDbSet<View>();
         }
     
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<View> Views { get; set; }
+
+
+        public IQueryable<Function_Result> Function(int? param1, string param2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ObjectResult<int?> Procedure(int? param1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

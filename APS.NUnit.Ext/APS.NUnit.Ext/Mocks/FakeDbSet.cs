@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace APS.NUnit.Ext
 {
 
-    public class StubDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T>, IDbAsyncEnumerable<T>
+    public class FakeDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T>, IDbAsyncEnumerable<T>
         where T : class
     {
         ObservableCollection<T> _data;
         IQueryable _query;
 
-        public StubDbSet()
+        public FakeDbSet()
         {
             _data = new ObservableCollection<T>();
             _query = _data.AsQueryable();

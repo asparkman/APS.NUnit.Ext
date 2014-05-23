@@ -20,3 +20,7 @@ Output for extracted embedded resources
 		1. FileInfo
 		2. Assembly
 		3. Namespace
+
+$dllPath = "C:\Users\Alex\Source\APS.NUnit.Ext\APS.NUnit.Ext\APS.NUnit.Ext\bin\debug\APS.NUnit.Ext.dll"
+[Reflection.Assembly]::LoadFile($dllPath)
+([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object -FilterScript { $_.GetName() -LIKE 'APS*' }).GetTypes()

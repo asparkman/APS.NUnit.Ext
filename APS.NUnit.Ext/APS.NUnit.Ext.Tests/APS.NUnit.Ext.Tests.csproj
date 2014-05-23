@@ -45,6 +45,7 @@
     <Compile Include="ExternalTests\EmbeddedResourceCreationTests.cs" />
     <Compile Include="ExternalTests\Files\FilesNamespace.cs" />
     <Compile Include="ExternalTests\Files\Sub\SubNamespace.cs" />
+    <Compile Include="ExternalTests\MethodInfoTests.cs" />
     <Compile Include="ExtractorTests.cs" />
     <Compile Include="Files\ExtractorTests\ExtractorTestsAnchor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
